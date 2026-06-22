@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FashionStore</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="home.html">👗 FashionStore</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="product-list.html?categoryId=2">Women</a></li>
+                <li><a href="product-list.html?categoryId=1">Men</a></li>
+                <li><a href="product-list.html?categoryId=3">Kids</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#" class="icon-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="cart.html" class="icon-btn cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <a href="login.html" class="icon-btn" id="loginBtn">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="Search for products, brands...">
+            <button onclick="searchProducts()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-tag">New Collection 2025</p>
+            <h1>Be Perfect<br>with <span>Fashion</span></h1>
+            <p class="hero-desc">Discover the latest trends in fashion. Shop premium quality clothing for Men, Women and Kids.</p>
+            <a href="product-list.html" class="btn-primary">Shop Now</a>
+        </div>
+        <div class="hero-image">
+            <div class="hero-image-card card-primary">
+                <img src="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg" alt="Luxury Woman Model">
+            </div>
+            <div class="hero-image-card card-secondary">
+                <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg" alt="Luxury Man Model">
+            </div>
+            <div class="hero-badge badge-popular">
+                <i class="fas fa-crown"></i>
+                <div>
+                    <span>Trending Styles</span>
+                    <small>New Collection 2025</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CATEGORIES SECTION ========== -->
+    <section class="categories-section reveal-on-scroll">
+        <div class="section-header">
+            <p class="section-tag">Our Categories</p>
+            <h2>Shop by Categories</h2>
+        </div>
+        <div class="categories-grid" id="categoriesGrid">
+            <!-- Loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- ========== SALE BANNER ========== -->
+    <section class="sale-banner reveal-on-scroll">
+        <div class="sale-content">
+            <p>Just for you</p>
+            <h2><span>20% Sale</span></h2>
+            <a href="product-list.html" class="btn-secondary">See what's on sale</a>
+        </div>
+    </section>
+
+    <!-- ========== FEATURED PRODUCTS ========== -->
+    <section class="featured-section reveal-on-scroll">
+        <div class="section-header">
+            <p class="section-tag">Trending Now</p>
+            <h2>Our Best Products</h2>
+        </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>👗 FashionStore</h3>
+                <p>Your one stop destination for premium fashion.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="product-list.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="my-orders.html">My Orders</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="product-list.html?categoryId=2">Women</a></li>
+                    <li><a href="product-list.html?categoryId=1">Men</a></li>
+                    <li><a href="product-list.html?categoryId=3">Kids</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> support@fashionstore.com</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bengaluru, Karnataka</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 FashionStore. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/home.js"></script>
+</body>
+</html>

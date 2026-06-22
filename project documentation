@@ -1,0 +1,82 @@
+# Fashion Store Project Documentation
+
+This document provides an overview of the Fashion Store web application project, its architecture, technology stack, and a step-by-step guide to building a similar project from scratch.
+
+## 1. Project Overview
+Fashion Store is a custom e-commerce web application built using standard Java Enterprise technologies without relying on heavy frameworks like Spring Boot. It uses a clean MVC (Model-View-Controller) architecture using raw Jakarta Servlets, JDBC for database connectivity, and a standard HTML/CSS/JS frontend.
+
+## 2. Technology Stack
+* **Backend Language:** Java 21
+* **Web API / Controllers:** Jakarta Servlet API (v6.0)
+* **Database:** MySQL 8
+* **Database Access:** Raw JDBC (via `mysql-connector-j`)
+* **JSON Parsing:** Gson (Google's JSON library)
+* **Build Tool & Dependency Management:** Maven
+* **Web Server:** Apache Tomcat 10 (Embedded using `cargo-maven3-plugin`)
+* **Frontend:** HTML5, Vanilla CSS, Vanilla JavaScript (Fetch API for REST calls)
+
+## 3. Application Architecture
+The project follows a standard multi-tier architecture, neatly separated into different packages:
+
+* **`com.fashionstore.controller`**: Contains the Servlets (e.g., `HomeServlet`, `CartServlet`, `CheckoutServlet`). These act as the entry points for HTTP requests, process business logic, and return either JSON data or forward the request to a view.
+* **`com.fashionstore.dao`**: Data Access Objects. These classes isolate the SQL queries and database connection logic from the rest of the application.
+* **`com.fashionstore.model`**: Java Beans (Entities) representing the database tables (e.g., User, Product, Order, Cart).
+* **`com.fashionstore.util`**: Utility classes, mostly for initializing and managing the JDBC database connection.
+* **`com.fashionstore.filter`**: Servlet filters to intercept requests (e.g., for Authentication or CORS management).
+* **Frontend Views**: Stored in `src/main/webapp/views` (HTML/JSP pages) and static assets (CSS/JS/Images) in `src/main/webapp/assets`.
+
+## 4. Steps to Build a Similar Project
+
+If you want to build a similar Java Servlet-based web application, follow these steps:
+
+### Step 1: Design and Setup the Database
+Design your relational database schema. For an e-commerce store, you typically need tables for:
+* `users` (id, name, email, password)
+* `categories` (id, name)
+* `products` (id, name, description, price, category_id, image_url)
+* `product_variants` & `product_sizes` (for handling sizing and stock)
+* `cart` (user_id, variant_id, quantity)
+* `orders` & `order_items` (checkout records)
+
+**Action:** Write a `.sql` schema script (like `schema_and_demo.sql`) to create these tables and insert initial mock data.
+
+### Step 2: Initialize a Maven Web Project
+Create a standard Maven directory structure (`src/main/java`, `src/main/webapp`). 
+**Action:** Create your `pom.xml` file. Define the packaging as `war`. Add the following crucial dependencies:
+1. `jakarta.servlet-api` (Scope: provided)
+2. `mysql-connector-j` (For DB connectivity)
+3. `gson` (For JSON serialization)
+
+Add a plugin like `cargo-maven3-plugin` to easily run Tomcat directly from Maven.
+
+### Step 3: Implement Database Connection Utility
+Create a singleton or utility class in your `util` package to handle the JDBC connections.
+**Action:** Use `DriverManager.getConnection()` with your MySQL URL, Username, and Password. Ensure you handle `SQLException` and register the JDBC driver (`Class.forName("com.mysql.cj.jdbc.Driver")`).
+
+### Step 4: Create Data Models (Entities)
+Map your database tables to Java objects.
+**Action:** Create standard Java POJOs (Plain Old Java Objects) in the `model` package for each table (e.g., `User.java`, `Product.java`) with private fields, getters, setters, and constructors.
+
+### Step 5: Implement Data Access Objects (DAOs)
+Isolate your SQL logic. Create a DAO class for each major entity.
+**Action:** Create classes like `ProductDao`, `UserDao`, `CartDao`. Use `PreparedStatement` to execute `SELECT`, `INSERT`, `UPDATE`, and `DELETE` queries safely (to prevent SQL injection) and map the `ResultSet` back to your Java Model objects.
+
+### Step 6: Create Servlet Controllers
+Write the backend API / routing logic using Jakarta Servlets.
+**Action:** Create classes in the `controller` package extending `HttpServlet`.
+* Override `doGet()` and `doPost()` methods.
+* Retrieve parameters using `request.getParameter()`.
+* Instantiate your DAOs to fetch/update data.
+* To build a RESTful API, use Gson to convert your Java objects to JSON strings and write them to the `response.getWriter()`, setting the content type to `application/json`.
+* Alternatively, to use server-side rendering, set attributes using `request.setAttribute()` and use a `RequestDispatcher` to forward to your HTML/JSP views.
+
+### Step 7: Build the Frontend
+Create the user interface inside `src/main/webapp`.
+**Action:** 
+* Create a layout with HTML pages (e.g., `index.html`, `cart.html`).
+* Style them using custom CSS in your `assets/css` directory.
+* Write JavaScript in `assets/js` to interact with your Servlets. Use the modern JS `fetch()` API to call your backend endpoints (e.g., `fetch('/FashionStore/products')`), parse the JSON response, and dynamically update the DOM to display products, cart items, etc.
+
+### Step 8: Build and Run
+Compile and deploy the application.
+**Action:** Run `mvn clean install` to build the `.war` file, and `mvn cargo:run` to spin up the embedded Tomcat server. Access the project in your browser at `http://localhost:8081/FashionStore`.

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products — FashionStore</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/product-list.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="home.html">👗 FashionStore</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="product-list.html?categoryId=2">Women</a></li>
+                <li><a href="product-list.html?categoryId=1">Men</a></li>
+                <li><a href="product-list.html?categoryId=3">Kids</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#" class="icon-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="cart.html" class="icon-btn cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <a href="login.html" class="icon-btn">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+        <div class="search-bar" id="searchBar">
+            <input type="text" id="searchInput" placeholder="Search for products, brands...">
+            <button onclick="searchProducts()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <h1 id="pageTitle">All Products</h1>
+            <p id="pageSubtitle">Discover our latest collection</p>
+        </div>
+    </div>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="shop-container">
+
+        <!-- FILTER SIDEBAR -->
+        <aside class="filter-sidebar">
+
+            <div class="filter-section">
+                <h3>Categories</h3>
+                <ul class="filter-list" id="categoryFilter">
+                    <li class="active" onclick="filterByCategory(null, this)">All</li>
+                </ul>
+            </div>
+
+            <div class="filter-section">
+                <h3>Price Range</h3>
+                <div class="price-inputs">
+                    <input type="number" id="minPrice" placeholder="Min ₹" min="0">
+                    <span>—</span>
+                    <input type="number" id="maxPrice" placeholder="Max ₹" min="0">
+                </div>
+                <button class="btn-filter" onclick="filterByPrice()">Apply</button>
+            </div>
+
+            <div class="filter-section">
+                <h3>Sort By</h3>
+                <select id="sortSelect" onchange="sortProducts()">
+                    <option value="default">Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name A-Z</option>
+                </select>
+            </div>
+
+            <button class="btn-clear" onclick="clearFilters()">
+                <i class="fas fa-times"></i> Clear Filters
+            </button>
+
+        </aside>
+
+        <!-- PRODUCTS AREA -->
+        <main class="products-area">
+
+            <div class="products-toolbar">
+                <p id="productCount">Loading products...</p>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products loaded dynamically -->
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>👗 FashionStore</h3>
+                <p>Your one stop destination for premium fashion.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="product-list.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="my-orders.html">My Orders</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="product-list.html?categoryId=2">Women</a></li>
+                    <li><a href="product-list.html?categoryId=1">Men</a></li>
+                    <li><a href="product-list.html?categoryId=3">Kids</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> support@fashionstore.com</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bengaluru, Karnataka</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 FashionStore. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/product-list.js"></script>
+</body>
+</html>
